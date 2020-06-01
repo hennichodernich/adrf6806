@@ -8,6 +8,7 @@
 #include "threewire.h"
 #include "frap.h"
 #include "adrf6806.h"
+#include "config.h"
 
 int finish = 0;
 

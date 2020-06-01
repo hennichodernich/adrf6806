@@ -91,7 +91,7 @@ void threewire_write16(t_spipintriple spipins, uint8_t addr, uint16_t data)
 	.tx_buf = (unsigned long)tx,
 	.rx_buf = (unsigned long)rx,
 	.len = 3,
-	.delay_usecs = 1000,
+	.delay_usecs = SPI_DELAY,
 	.speed_hz = SPI_SPEED,
 	.bits_per_word = 8,
     };
@@ -117,7 +117,7 @@ void threewire_writeraw24(t_spipintriple spipins, uint32_t data)
 	.tx_buf = (unsigned long)tx,
 	.rx_buf = (unsigned long)rx,
 	.len = 3,
-	.delay_usecs = 1000,
+	.delay_usecs = SPI_DELAY,
 	.speed_hz = SPI_SPEED,
 	.bits_per_word = 8,
     };
@@ -126,7 +126,6 @@ void threewire_writeraw24(t_spipintriple spipins, uint32_t data)
     tx[1] = (data>>8) & 0xff;
     tx[2] = data & 0xff;
 
-    
     ret = ioctl(*((int *)spipins.context), SPI_IOC_MESSAGE(1), &tr);
     if (ret < 1)
 	pabort("can't send spi message");
